@@ -7,7 +7,7 @@ var newZoomLevel;
 
 function initialize() {
   var input = document.getElementById('pac-input');
-  var autocomplete = new google.maps.places.Autocomplete(input, { types: ['geocode'] });
+  var autocomplete = new google.maps.places.Autocomplete(input);
   // Restrict to only show Hong Kong
   autocomplete.setComponentRestrictions(
       {'country': ['hk']});
@@ -42,7 +42,11 @@ function initialize() {
 }
 
 function showPano(lat, lng) {
-  // console.log(lat, lng)
+  var map = new google.maps.Map(document.getElementById('map-hk'), {
+      center: {lat:lat, lng:lng},
+      zoom: 11,
+  });
+
   var hk_div = document.getElementById('pano-hk')
   hk_pano = new google.maps.StreetViewPanorama(
       document.getElementById('pano-hk'), {
@@ -53,6 +57,7 @@ function showPano(lat, lng) {
         },
         zoom: 1,
       });
+  map.setStreetView(hk_pano);
 
   google.maps.event.addDomListener(hk_div, 'click', function(){
     google.maps.event.removeListener(uk_listener);
@@ -66,7 +71,7 @@ function showPano(lat, lng) {
 }
 
 function findSameName(streetname){
-  var uk_div = document.getElementById('pano-uk')
+  var uk_div = document.getElementById('pano-uk');
 
   geocoder = new google.maps.Geocoder();
   var request = {
@@ -80,17 +85,21 @@ function findSameName(streetname){
       var lat = results[0].geometry.location.lat();
       var lng = results[0].geometry.location.lng();
       // console.log("uk lat", lat, lng)
-
+      var map = new google.maps.Map(document.getElementById('map-uk'), {
+          center: {lat:lat, lng:lng},
+          zoom: 8,
+      });
       // console.log(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-    uk_pano = new google.maps.StreetViewPanorama(document.getElementById('pano-uk'), {
-            position: {lat:lat, lng:lng},
-            pov: {
-              heading: 270,
-              pitch: 0
-            },
-            zoom: 1
-          });
+      uk_pano = new google.maps.StreetViewPanorama(document.getElementById('pano-uk'), {
+        position: {lat:lat, lng:lng},
+        pov: {
+          heading: 270,
+          pitch: 0
+        },
+        zoom: 1
+      });
 
+        map.setStreetView(uk_pano);
           // uk_listener = uk_pano.addListener('zoom_changed', function(){
           //   console.log(uk_pano.getZoom())
           //   google.maps.event.removeListener(hk_listener);

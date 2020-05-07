@@ -5,11 +5,29 @@
   </head>
   <body>
     <!-- <div id="map" style="width: 45%; height: 100%;float:left"></div> -->
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <div class ="maps">
-      <div class="pano" id="pano-hk"></div>
-      <div class="pano" id="pano-uk"></div>
-    </div>
+    <main>
+      <div>
+
+      </div>
+
+      <div class="streetview-container">
+        <div class="search">
+          <input id="pac-input" class="controls" type="text" placeholder="Search for a Street in Hong Kong">
+        </div>
+
+        <div class ="streetviews">
+          <div class="map" id="map-hk"></div>
+          <div class="pano" id="pano-hk">
+            <p class="place-label">Hong Kong</p>
+          </div>
+          <div class="pano" id="pano-uk">
+            <div class="map" id="map-uk"></div>
+            <p class="place-label">United Kingdom</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
     <script src="colonial.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVLqI0h6b80VfnrYW6A07_O51Ct6WU3eE&region=GB&libraries=places&callback=initialize">

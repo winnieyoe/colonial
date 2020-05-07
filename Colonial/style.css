@@ -1,8 +1,20 @@
+@font-face {
+  font-family: 'GT-Sectra-Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('assets/fonts/GT-Sectra-Fine-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Moderat-Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('assets/fonts/Moderat-Regular.ttf');
+}
+
+
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
-#map {
-  height: 100%;
-}
 /* Optional: Makes the sample page fill the window. */
 html, body {
   height: 100%;
@@ -10,17 +22,80 @@ html, body {
   padding: 0;
 }
 
-.streetviews {
-  display: flex;
-  flex-direction: column;
+.streetview-container {
+  position: relative;
 }
 
-.maps {
+.search {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#pac-input {
+  position: fixed;
+  width: 50%;
+  height: 40px;
+  z-index: 99;
+  top: 50%;
+  /* left:2%; */
+  margin-left: -25%;
+  font-family: "Moderat-Regular";
+  text-align: center;
+  font-size: 1rem;
+  background-color: #121212;
+  color: #fff;
+  border: unset;
+  /* transform: translate(5%, -45%); */
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #fff;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #fff;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #fff
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #fff
+}
+
+.map {
+  position: fixed;
+  z-index:99;
+  width: 15%;
+  height: 15vh;
+  border: 1px solid #333;
+}
+
+#hk_map{
+  top: 0;
+  left: 0;
+  /* position:fixed; */
+}
+
+.streetviews {
   display: flex;
+  z-index: 0;
 }
 
 .pano {
   border: 1px solid #333;
   width: 50%;
   height: 100vh;
+}
+
+.place-label {
+  font-family: "GT-Sectra-Regular";
+  font-size: 1.75rem;
+  display: flex;
+  height: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+#pano-hk{
+  border-right: unset;
 }
