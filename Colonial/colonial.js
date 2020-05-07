@@ -1,9 +1,8 @@
 var map;
 var hk_pano;
-var hk_listener;
-var uk_listener;
 var uk_pano;
-var newZoomLevel;
+var over;
+var styledMap;
 
 function initialize() {
   var input = document.getElementById('pac-input');
@@ -36,38 +35,124 @@ function initialize() {
     var lat = place.geometry.location.lat();
     var lng = place.geometry.location.lng();
     showPano(lat, lng)
-    console.log(lat, lng)
-    // console.log("streetname", streetname)
   })
+
+  styledMapType = new google.maps.StyledMapType([
+    {
+        "featureType": "administrative",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            },
+            {
+                "color": "#fcfcfc"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            },
+            {
+                "color": "#fcfcfc"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            },
+            {
+                "color": "#dddddd"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            },
+            {
+                "color": "#dddddd"
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            },
+            {
+                "color": "#eeeeee"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            },
+            {
+                "color": "#dddddd"
+            }
+        ]
+    }
+])
 }
 
 function showPano(lat, lng) {
   var map = new google.maps.Map(document.getElementById('map-hk'), {
       center: {lat:lat, lng:lng},
       zoom: 11,
+      fullscreenControl: false,
   });
 
   var hk_div = document.getElementById('pano-hk')
-  hk_pano = new google.maps.StreetViewPanorama(
-      document.getElementById('pano-hk'), {
-        position: {lat:lat, lng:lng},
-        pov: {
-          heading: 270,
-          pitch: 0
-        },
-        zoom: 1,
-      });
+  var map_options = {
+    position: {lat:lat, lng:lng},
+    pov: {heading: 250,pitch: 0},
+    zoom: 1,
+    mapTypeControlOptions: {
+      mapTypeIds: ['styled_map']
+    },
+    fullscreenControl: false
+  }
+  map.mapTypes.set('styled_map', styledMapType);
+  map.setMapTypeId('styled_map');
+
+  hk_pano = new google.maps.StreetViewPanorama(document.getElementById('pano-hk'), map_options);
   map.setStreetView(hk_pano);
 
-  google.maps.event.addDomListener(hk_div, 'click', function(){
-    google.maps.event.removeListener(uk_listener);
-    console.log(hk_pano.getZoom())
-    hk_listener = hk_pano.addListener('zoom_changed', function(){
-      if (hk_pano.getZoom() <= 4) {
-        uk_pano.setZoom(hk_pano.getZoom());
+  google.maps.event.addListener(hk_pano, 'pov_changed', function() {
+      if(over==hk_div)
+      {
+        uk_pano.setPov({ heading: hk_pano.getPov().heading , pitch: hk_pano.getPov().pitch, zoom: hk_pano.getPov().zoom });
       }
-    })
-  })
+    });
+    google.maps.event.addDomListener(hk_div, 'mouseover', function() {
+        over=this;});
 }
 
 function findSameName(streetname){
@@ -78,101 +163,44 @@ function findSameName(streetname){
       'address': streetname,
       'componentRestrictions': {'country': 'UK'}
   }
-    // console.log(streetname)
+
   geocoder.geocode(request, function(results, status){
     if (status === 'OK') {
       // console.log("results", results)
       var lat = results[0].geometry.location.lat();
       var lng = results[0].geometry.location.lng();
-      // console.log("uk lat", lat, lng)
+
       var map = new google.maps.Map(document.getElementById('map-uk'), {
           center: {lat:lat, lng:lng},
-          zoom: 8,
+          zoom: 6,
+          fullscreenControl: false,
       });
-      // console.log(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-      uk_pano = new google.maps.StreetViewPanorama(document.getElementById('pano-uk'), {
+
+      var map_options = {
         position: {lat:lat, lng:lng},
-        pov: {
-          heading: 270,
-          pitch: 0
+        pov: {heading: 250,pitch: 0},
+        zoom: 1,
+        mapTypeControlOptions: {
+          mapTypeIds: ['styled_map']
         },
-        zoom: 1
+        fullscreenControl: false
+      }
+      map.mapTypes.set('styled_map', styledMapType);
+      map.setMapTypeId('styled_map');
+
+      uk_pano = new google.maps.StreetViewPanorama(document.getElementById('pano-uk'), map_options);
+      map.setStreetView(uk_pano);
+
+      google.maps.event.addListener(uk_pano, 'pov_changed', function() {
+      if(over==uk_div){
+        hk_pano.setPov({ heading: uk_pano.getPov().heading , pitch: uk_pano.getPov().pitch, zoom: uk_pano.getPov().zoom });
+      }
       });
-
-        map.setStreetView(uk_pano);
-          // uk_listener = uk_pano.addListener('zoom_changed', function(){
-          //   console.log(uk_pano.getZoom())
-          //   google.maps.event.removeListener(hk_listener);
-          //   hk_pano.setZoom(uk_pano.getZoom());
-          //   google.maps.event.addListener(hk_listener);
-          // })
-
-        google.maps.event.addDomListener(uk_div, 'click', function(){
-            google.maps.event.removeListener(hk_listener);
-            uk_listener = uk_pano.addListener('zoom_changed', function(){
-              if(uk_pano.getZoom() <=4){
-                hk_pano.setZoom(uk_pano.getZoom());
-              }
-            })
-          })
+      google.maps.event.addDomListener(uk_div, 'mouseover', function() {
+        over=this;});
 
       } else {
-        alert("Geocode was not successful for the following reason: " + status);
+        alert("No streets found in the UK, please try a different entry.");
       }
   })
 }
-
-// function initMap() {
-//   var berkeley = {lat: 37.869085, lng: -122.254775};
-//   var sv = new google.maps.StreetViewService();
-//
-//   panorama = new google.maps.StreetViewPanorama(document.getElementById('pano-hk'));
-//
-//   // Set up the map.
-//   map = new google.maps.Map(document.getElementById('map'), {
-//     center: berkeley,
-//     zoom: 16,
-//     streetViewControl: false
-//   });
-//
-//   // Set the initial Street View camera to the center of the map
-//   sv.getPanorama({location: berkeley, radius: 50}, processSVData);
-//
-//   // Look for a nearby Street View panorama when the map is clicked.
-//   // getPanorama will return the nearest pano when the given
-//   // radius is 50 meters or less.
-//   map.addListener('click', function(event) {
-//     sv.getPanorama({location: event.latLng, radius: 50}, processSVData);
-//   });
-// }
-//
-// function processSVData(data, status) {
-//   if (status === 'OK') {
-//     var marker = new google.maps.Marker({
-//       position: data.location.latLng,
-//       map: map,
-//       title: data.location.description
-//     });
-//       console.log(data.location.latLng)
-//
-//     panorama.setPano(data.location.pano);
-//     panorama.setPov({
-//       heading: 270,
-//       pitch: 0
-//     });
-//     panorama.setVisible(true);
-//
-//     marker.addListener('click', function() {
-//       var markerPanoID = data.location.pano;
-//       // Set the Pano to use the passed panoID.
-//       panorama.setPano(markerPanoID);
-//       panorama.setPov({
-//         heading: 270,
-//         pitch: 0
-//       });
-//       panorama.setVisible(true);
-//     });
-//   } else {
-//     console.error('Street View data not found for this location.');
-//   }
-// }

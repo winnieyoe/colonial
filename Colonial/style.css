@@ -65,15 +65,18 @@ html, body {
 .map {
   position: fixed;
   z-index:99;
-  width: 15%;
-  height: 15vh;
-  border: 1px solid #333;
+  width: 20vh;
+  height: 12vh;
+  float: right;
+  margin: 2%;
 }
 
 #hk_map{
-  top: 0;
-  left: 0;
-  /* position:fixed; */
+
+}
+
+#uk_map {
+
 }
 
 .streetviews {
