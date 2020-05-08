@@ -45,10 +45,16 @@ h3 {
   line-height: 1.2;
 }
 
-
 p {
   font-family: 'Moderat-Regular';
   line-height: 1.5;
+}
+
+header {
+  z-index: 999;
+  position: absolute;
+  margin: 1% 8%;
+  color: #F95959;
 }
 
 .link {
@@ -66,7 +72,7 @@ p {
 }
 
 .intro-text {
-  margin: 6% 8%;
+  margin: 10% 8%;
   z-index: 5;
   position: absolute;
   width: 35%;
