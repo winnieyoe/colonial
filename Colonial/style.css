@@ -6,6 +6,13 @@
 }
 
 @font-face {
+  font-family: 'GT-Sectra-Regular-Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: url('assets/fonts/GT-Sectra-Fine-Regular-Italic.ttf');
+}
+
+@font-face {
   font-family: 'Moderat-Regular';
   font-style: normal;
   font-weight: normal;
@@ -25,12 +32,33 @@ html, body {
 h2 {
   font-family: 'GT-Sectra-Regular';
   font-size: 2.5rem;
-  line-height: 1.1;
+  line-height: 1.2;
+  font-variant-numeric: lining-nums;
+  -moz-font-feature-settings: "lnum";
+  -webkit-font-feature-settings: "lnum";
+  font-feature-settings: "lnum";
 }
+
+h3 {
+  font-family: 'GT-Sectra-Regular';
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
 
 p {
   font-family: 'Moderat-Regular';
   line-height: 1.5;
+}
+
+.link {
+  font-family: 'GT-Sectra-Regular-Italic';
+  color: #F95959;
+  font-size: 1rem;
+}
+
+.link:hover {
+  color: #c54a00;
 }
 
 .intro-container {
@@ -47,6 +75,18 @@ p {
 .world-map {
   height: 100vh;
   position: fixed;
+}
+
+.history-container {
+  position: relative;
+  background-color: #fdebdf;
+}
+
+.history {
+  padding: 2% 8%;
+  height: 100vh;
+  color: #F95959;
+  overflow-y: scroll;
 }
 
 .streetview-container {
@@ -106,12 +146,13 @@ p {
 }
 
 .pano {
-  border: 1px solid #333;
+  border: 1px solid #121212;
   width: 50%;
   height: 100vh;
 }
 
 .place-label {
+  color: #F95959;
   font-family: "GT-Sectra-Regular";
   font-size: 1.75rem;
   display: flex;
@@ -122,4 +163,30 @@ p {
 
 #pano-hk{
   border-right: unset;
+}
+
+.responsive {
+  display: none;
+}
+
+/* Media queries */
+@media (max-width: 1024px) {
+  body {
+  background-color: #fdebdf;
+  }
+
+  main {
+    display: none;
+  }
+
+  .responsive {
+    font-family: "GT-Sectra-Regular";
+    font-size: 1.25rem;
+    color: #F95959;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+  }
 }
