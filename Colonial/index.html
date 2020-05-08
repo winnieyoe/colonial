@@ -2,10 +2,28 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="style.css">
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
   </head>
   <body>
     <!-- <div id="map" style="width: 45%; height: 100%;float:left"></div> -->
     <main>
+      <div class="intro-container">
+        <div class="intro-text">
+          <h2>Same street.  <br>5,900 miles apart.</h2>
+          <p>The naming of streets and roads is arbitrary, in fact, it often embeds hints of a place’s local history.
+            Many of the street names in Hong Kong reflects its colonial past (1800s — 1997), with streets being named after
+            British royal family and officials, Chinese and expatriate elites in Hong Kong, local and foreign enterprises,
+            while others are named after industries, historical sites, and Chinese cities and provinces. Explore HK vs UK Streets
+          </p>
+          <p>
+            This has led to streets in Hong Kong and the UK sharing the same name. The translation of streetnames has also led to
+            accidental namings, such as how “Alexandra Terrace” became “Rednaxela Terrace”  as Chinese is usually read from left to right.
+            More Examples of Street Name History
+          </p>
+        </div>
+        <div class="world-map" id="world-map"></div>
+      </div>
+
       <div class="streetview-container">
         <div class="search">
           <input id="pac-input" class="controls" type="text" placeholder="Search for a Street in Hong Kong">

@@ -22,24 +22,53 @@ html, body {
   padding: 0;
 }
 
+h2 {
+  font-family: 'GT-Sectra-Regular';
+  font-size: 2.5rem;
+  line-height: 1.1;
+}
+
+p {
+  font-family: 'Moderat-Regular';
+  line-height: 1.5;
+}
+
+.intro-container {
+  position: relative;
+}
+
+.intro-text {
+  margin: 6% 8%;
+  z-index: 5;
+  position: absolute;
+  width: 35%;
+}
+
+.world-map {
+  height: 100vh;
+  position: fixed;
+}
+
 .streetview-container {
   position: relative;
 }
 
 .search {
-  text-align: center;
-  justify-content: center;
-  align-items: center;
+  position: relative;
 }
 
 #pac-input {
-  position: fixed;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
   width: 50%;
   height: 40px;
   z-index: 99;
-  top: 50%;
-  /* left:2%; */
-  margin-left: -25%;
+  /* top: 50%; */
+  margin-top: 30%;
+  left: 25%;
+  /* margin-left: -25%; */
   font-family: "Moderat-Regular";
   text-align: center;
   font-size: 1rem;
@@ -69,14 +98,6 @@ html, body {
   height: 12vh;
   float: right;
   margin: 2%;
-}
-
-#hk_map{
-
-}
-
-#uk_map {
-
 }
 
 .streetviews {

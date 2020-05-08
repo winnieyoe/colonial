@@ -5,6 +5,40 @@ var over;
 var styledMap;
 
 function initialize() {
+  var world_map = new google.maps.Map(document.getElementById('world-map'),{
+    zoom: 3,
+    center: {lat: 40.95, lng: 11.72},
+    mapTypeId: 'terrain',
+    disableDefaultUI: true,
+  });
+
+  var flightpaths = [
+    {lat: 22.302711, lng: 114.177216},
+    {lat: 51.509865, lng: -0.118092}
+  ]
+
+  var lineSymbol = {
+    path: 'M 0,-1 0,1',
+    scale: 2,
+    strokeColor: '#ff6420',
+  };
+
+  var flightPath = new google.maps.Polyline({
+      path: flightpaths,
+      icons:[{
+        icon: lineSymbol,
+        offset: '0',
+        repeat: '10px'
+      }],
+      map: world_map,
+      geodesic: true,
+      strokeWeight: 0
+  });
+
+  animateCircle(flightPath)
+
+  // flightPath.setMap(world_map);
+
   var input = document.getElementById('pac-input');
   var autocomplete = new google.maps.places.Autocomplete(input);
   // Restrict to only show Hong Kong
@@ -39,11 +73,148 @@ function initialize() {
 
   styledMapType = new google.maps.StyledMapType([
     {
+        "featureType": "all",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "hue": "#ff4800"
+            },
+            {
+                "gamma": "1.89"
+            },
+            {
+                "saturation": "74"
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "gamma": 0.01
+            },
+            {
+                "lightness": 20
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "saturation": -31
+            },
+            {
+                "lightness": -33
+            },
+            {
+                "weight": 2
+            },
+            {
+                "gamma": 0.8
+            },
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
         "featureType": "administrative",
+        "elementType": "labels.text",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+      "featureType": "administrative",
+      "elementType": "geometry.fill",
+      "stylers": [{ "visibility": "off" }]
+    },
+    {
+        "featureType": "administrative.country",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": "#f9bd94"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.country",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#938d8d"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.country",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.province",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.locality",
         "elementType": "all",
         "stylers": [
             {
-                "visibility": "simplified"
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.locality",
+        "elementType": "labels.text",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.neighborhood",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.land_parcel",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
             }
         ]
     },
@@ -52,10 +223,10 @@ function initialize() {
         "elementType": "geometry",
         "stylers": [
             {
-                "visibility": "simplified"
+                "lightness": 30
             },
             {
-                "color": "#fcfcfc"
+                "saturation": 30
             }
         ]
     },
@@ -64,62 +235,70 @@ function initialize() {
         "elementType": "geometry",
         "stylers": [
             {
-                "visibility": "simplified"
-            },
-            {
-                "color": "#fcfcfc"
+                "saturation": 20
             }
         ]
     },
     {
-        "featureType": "road.highway",
+        "featureType": "poi.park",
         "elementType": "geometry",
         "stylers": [
             {
-                "visibility": "simplified"
+                "lightness": 20
             },
             {
-                "color": "#dddddd"
+                "saturation": -20
             }
         ]
     },
     {
-        "featureType": "road.arterial",
+        "featureType": "road",
         "elementType": "geometry",
         "stylers": [
             {
-                "visibility": "simplified"
+                "lightness": 10
             },
             {
-                "color": "#dddddd"
+                "saturation": -30
             }
         ]
     },
     {
-        "featureType": "road.local",
-        "elementType": "geometry",
+        "featureType": "road",
+        "elementType": "geometry.stroke",
         "stylers": [
             {
-                "visibility": "simplified"
+                "saturation": 25
             },
             {
-                "color": "#eeeeee"
+                "lightness": 25
             }
         ]
     },
     {
         "featureType": "water",
-        "elementType": "geometry",
+        "elementType": "all",
         "stylers": [
             {
-                "visibility": "simplified"
+                "lightness": -20
             },
             {
-                "color": "#dddddd"
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "labels.text",
+        "stylers": [
+            {
+                "visibility": "off"
             }
         ]
     }
 ])
+world_map.mapTypes.set('styled_map', styledMapType);
+world_map.setMapTypeId('styled_map');
 }
 
 function showPano(lat, lng) {
@@ -137,7 +316,8 @@ function showPano(lat, lng) {
     mapTypeControlOptions: {
       mapTypeIds: ['styled_map']
     },
-    fullscreenControl: false
+    fullscreenControl: false,
+    linksControl: false,
   }
   map.mapTypes.set('styled_map', styledMapType);
   map.setMapTypeId('styled_map');
@@ -183,7 +363,8 @@ function findSameName(streetname){
         mapTypeControlOptions: {
           mapTypeIds: ['styled_map']
         },
-        fullscreenControl: false
+        fullscreenControl: false,
+        linksControl: false,
       }
       map.mapTypes.set('styled_map', styledMapType);
       map.setMapTypeId('styled_map');
@@ -204,3 +385,25 @@ function findSameName(streetname){
       }
   })
 }
+
+function animateCircle(flightPath) {
+    var count = 0;
+    window.setInterval(function() {
+      count = (count + 1) % 200;
+
+      var icons = flightPath.get('icons');
+      icons[0].offset = (count / 2) + '%';
+      flightPath.set('icons', icons);
+  }, 100);
+}
+
+// $(window).scroll(function() {
+//   if ($(this).scrollTop()> 200){
+//       $('.intro-container').fadeOut();
+//       $('.streetview-container').fadeIn();
+//    }
+//   else {
+//     // $('.intro-container').fadeIn();
+//     // $('.streetview-container').fadeOut();
+//   }
+//  });
