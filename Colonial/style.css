@@ -54,6 +54,9 @@ header {
   z-index: 999;
   position: absolute;
   margin: 1% 8%;
+}
+
+.title {
   color: #F95959;
 }
 
@@ -72,7 +75,7 @@ header {
 }
 
 .intro-text {
-  margin: 10% 8%;
+  margin: 10% 9%;
   z-index: 5;
   position: absolute;
   width: 35%;
@@ -85,20 +88,28 @@ header {
 
 .history-container {
   position: relative;
-  padding: 4% 8%;
+  padding: 2% 9%;
   background-color: #fdebdf;
   height: 100vh;
 }
 
-.history {
-  color: #F95959;
-  /* overflow-y: scroll; */
+#history-h {
+  margin: 0 auto 2% auto;
+}
+
+#history-p {
+  color: #121212;
 }
 
 iframe {
   width: 100%;
-  height: 700px;
+  height: 650px;
 }
+
+.vp-center {
+  height: 0%;
+}
+
 
 .streetview-container {
   position: relative;
