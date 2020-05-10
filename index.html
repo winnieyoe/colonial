@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.8/fullpage.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="utf-8" />
+</head>
+
+<body>
+  <div class="responsive">Sorry, Mobile Version is in Development</div>
+
+  <div id="fullpage">
+    <div class="intro-container section">
+      <header><p class="title">Tracing History through Street Names<p></header>
+      <div class="intro-text">
+        <h2>Same street.  <br>5,977 miles apart.</h2>
+        <p>The naming of streets and roads is arbitrary, in fact, it often embeds hints of a place’s local history.
+          Many of the street names in Hong Kong reflects its colonial past (1800s — 1997), with streets being named after
+          British royal family and officials, Chinese and expatriate elites in Hong Kong, local and foreign enterprises,
+          while others are named after industries, historical sites, and Chinese cities and provinces.
+          <a class="link" href="#streetview">Explore H.K. vs U.K. Streets</a>
+        </p>
+        <p>
+          This has led to streets in Hong Kong and the UK sharing the same name. The translation of streetnames has also led to
+          accidental namings, such as how “Alexandra Terrace” became “Rednaxela Terrace”  as Chinese is usually read from left to right.
+          <a class="link" href="#history">History of Some H.K. Street Names</a>
+        </p>
+      </div>
+      <div class="world-map" id="world-map"></div>
+    </div>
+
+    <div class="history-container section" id="history">
+      <p class="title">Stories Behind Street Naming<p>
+      <div class="history">
+        <h3 id="history-h">Example: The Queens in Hong Kong</h3>
+      </div>
+      <div class="inner">
+        <iframe id="video" src="https://player.vimeo.com/video/416819356?autoplay=1&loop=1&autopause=0&muted=1" frameborder="0" allow="autoplay; fullscreen" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="streetview-container section" id="streetview">
+      <div class="search">
+        <input id="pac-input" class="controls" type="text" placeholder="Search for a Street in Hong Kong">
+      </div>
+
+      <div class ="streetviews">
+        <div class="pano" id="pano-hk">
+          <div class="map" id="map-hk"></div>
+          <p class="place-label">Hong Kong</p>
+        </div>
+        <div class="pano" id="pano-uk">
+          <div class="map" id="map-uk"></div>
+          <p class="place-label">United Kingdom</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script src="colonial.js"></script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVLqI0h6b80VfnrYW6A07_O51Ct6WU3eE&region=GB&libraries=places&callback=initialize">
+</script>
+<!-- Replace the value of the key parameter with your own API key. -->

@@ -1,0 +1,218 @@
+@font-face {
+  font-family: 'GT-Sectra-Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('assets/fonts/GT-Sectra-Fine-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'GT-Sectra-Regular-Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: url('assets/fonts/GT-Sectra-Fine-Regular-Italic.ttf');
+}
+
+@font-face {
+  font-family: 'Moderat-Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('assets/fonts/Moderat-Regular.ttf');
+}
+
+
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-family: 'GT-Sectra-Regular';
+  font-size: 2.5rem;
+  line-height: 1.2;
+  font-variant-numeric: lining-nums;
+  -moz-font-feature-settings: "lnum";
+  -webkit-font-feature-settings: "lnum";
+  font-feature-settings: "lnum";
+}
+
+h3 {
+  font-family: 'GT-Sectra-Regular';
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+p {
+  font-family: 'Moderat-Regular';
+  line-height: 1.5;
+}
+
+header {
+  z-index: 999;
+  position: absolute;
+  margin: 1% 9%;
+}
+
+.title {
+  color: #F95959;
+}
+
+.link {
+  font-family: 'GT-Sectra-Regular-Italic';
+  color: #F95959;
+  font-size: 1rem;
+}
+
+.link:hover {
+  color: #c54a00;
+}
+
+.intro-container {
+  position: relative;
+}
+
+.intro-text {
+  margin: 10% 9%;
+  z-index: 5;
+  position: absolute;
+  width: 35%;
+}
+
+.world-map {
+  height: 100vh;
+  position: fixed;
+}
+
+.history-container {
+  position: relative;
+  padding: 2% 9%;
+  background-color: #fdebdf;
+  height: 100vh;
+}
+
+#history-h {
+  margin: 0 auto 2% auto;
+}
+
+#history-p {
+  color: #121212;
+}
+
+iframe {
+  width: 100%;
+  height: 650px;
+}
+
+.vp-center {
+  height: 0%;
+}
+
+
+.streetview-container {
+  position: relative;
+}
+
+.search {
+  position: relative;
+}
+
+#pac-input {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 50%;
+  height: 40px;
+  z-index: 99;
+  /* top: 50%; */
+  margin-top: 30%;
+  left: 25%;
+  /* margin-left: -25%; */
+  font-family: "Moderat-Regular";
+  text-align: center;
+  font-size: 1rem;
+  background-color: #121212;
+  color: #fff;
+  border: unset;
+  /* transform: translate(5%, -45%); */
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #fff;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #fff;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #fff
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #fff
+}
+
+.map {
+  position: fixed;
+  z-index:99;
+  width: 20vh;
+  height: 12vh;
+  float: right;
+  margin: 2%;
+}
+
+.streetviews {
+  display: flex;
+  z-index: 0;
+}
+
+.pano {
+  border: 1px solid #121212;
+  width: 50%;
+  height: 100vh;
+}
+
+.place-label {
+  color: #F95959;
+  font-family: "GT-Sectra-Regular";
+  font-size: 1.75rem;
+  display: flex;
+  height: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+#pano-hk{
+  border-right: unset;
+}
+
+.responsive {
+  display: none;
+}
+
+/* Media queries */
+@media (max-width: 1024px) {
+  body {
+  background-color: #fdebdf;
+  }
+
+  header {
+    display: none;
+  }
+
+  main {
+    display: none;
+  }
+
+  .responsive {
+    font-family: "GT-Sectra-Regular";
+    font-size: 1.25rem;
+    color: #F95959;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+  }
+}
