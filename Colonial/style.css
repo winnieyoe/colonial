@@ -92,13 +92,12 @@ header {
 
 .history {
   color: #F95959;
-  margin-bottom: 4%;
   /* overflow-y: scroll; */
 }
 
-video {
+iframe {
   width: 100%;
-  height: auto;
+  height: 700px;
 }
 
 .streetview-container {
