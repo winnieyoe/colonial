@@ -85,14 +85,20 @@ header {
 
 .history-container {
   position: relative;
+  padding: 4% 8%;
   background-color: #fdebdf;
+  height: 100vh;
 }
 
 .history {
-  padding: 2% 8%;
-  height: 100vh;
   color: #F95959;
-  overflow-y: scroll;
+  margin-bottom: 4%;
+  /* overflow-y: scroll; */
+}
+
+video {
+  width: 100%;
+  height: auto;
 }
 
 .streetview-container {
@@ -179,6 +185,10 @@ header {
 @media (max-width: 1024px) {
   body {
   background-color: #fdebdf;
+  }
+
+  header {
+    display: none;
   }
 
   main {
