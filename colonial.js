@@ -14,7 +14,9 @@ function initialize() {
     disableDefaultUI: true,
     options: {
       gestureHandling: 'greedy'
-    }
+    },
+    scrollwheel: false,
+    draggable: false,
   });
 
   var flightpaths = [
@@ -58,7 +60,7 @@ function initialize() {
   autocomplete.addListener('place_changed', function(){
     // Get place info
     var place = autocomplete.getPlace();
-    console.log(place)
+    // console.log(place)
     for (let i=0; i < place.address_components.length; i++){
       if (place.address_components[0].types[0] == "street_number" && place.address_components[1].types[0] == "route"){
         streetname = place.address_components[0].long_name + " " + place.address_components[1].long_name;
