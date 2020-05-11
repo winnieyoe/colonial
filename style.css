@@ -60,6 +60,17 @@ header {
   color: #F95959;
 }
 
+.scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+section {
+  height: 100vh;
+  scroll-snap-align: center;
+}
+
 .link {
   font-family: 'GT-Sectra-Regular-Italic';
   color: #F95959;
@@ -90,7 +101,6 @@ header {
   position: relative;
   padding: 2% 9%;
   background-color: #fdebdf;
-  height: 100vh;
 }
 
 #history-h {

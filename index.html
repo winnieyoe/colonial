@@ -3,7 +3,7 @@
 <head>
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" charset="utf-8"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.8/fullpage.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
   <link rel="stylesheet" type="text/css" href="style.css">
   <meta charset="utf-8" />
@@ -12,8 +12,8 @@
 <body>
   <div class="responsive">Sorry, Mobile Version is in Development</div>
 
-  <div id="fullpage">
-    <div class="intro-container section">
+  <div class="scroll-container">
+    <section class="intro-container">
       <header><p class="title">Tracing History through Street Names<p></header>
       <div class="intro-text">
         <h2>Same street.  <br>5,977 miles apart.</h2>
@@ -30,19 +30,17 @@
         </p>
       </div>
       <div class="world-map" id="world-map"></div>
-    </div>
+    </section>
 
-    <div class="history-container section" id="history">
-      <p class="title">Stories Behind Street Naming<p>
+    <section class="history-container" id="history">
+      <p class="title">Stories Behind Street Naming</p>
       <div class="history">
         <h3 id="history-h">Example: The Queens in Hong Kong</h3>
       </div>
-      <div class="inner">
-        <iframe id="video" src="https://player.vimeo.com/video/416819356?autoplay=1&loop=1&autopause=0&muted=1" frameborder="0" allow="autoplay; fullscreen" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-      </div>
-    </div>
+      <iframe id="video" src="https://player.vimeo.com/video/416819356?autoplay=1&loop=1&autopause=0&muted=1" frameborder="0" allow="autoplay; fullscreen" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </section>
 
-    <div class="streetview-container section" id="streetview">
+    <section class="streetview-container" id="streetview">
       <div class="search">
         <input id="pac-input" class="controls" type="text" placeholder="Search for a Street in Hong Kong">
       </div>
@@ -57,7 +55,7 @@
           <p class="place-label">United Kingdom</p>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </body>
 </html>
